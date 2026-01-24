@@ -7,4 +7,6 @@ Currently looking into SCD.BIN
 * Reinsertion of edited graphics.
 * Translation of text stored in .CSV files and an ELF file.
 * Translation of text stored in SCD.BIN is limited by lenght of original string x 2 (1 byte per ascii vs 2 bytes per shift-jis).
+
+
 <img src="WIP/Elminage - Yami no Fujo to Kamigami no Yubiwa_SLPM-66929_20260124172701.webp" width="320" height="224"/> <img src="WIP/Elminage - Yami no Fujo to Kamigami no Yubiwa_SLPM-66929_20260124172801.webp" width="320" height="224"/> <img src="WIP/Elminage - Yami no Fujo to Kamigami no Yubiwa_SLPM-66929_20260124172930.webp" width="320" height="224"/>
