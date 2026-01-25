@@ -40,12 +40,15 @@ def unpack(path):
                     xor_value = ("%X" % CRC_TABLE[(infile_pointer % 1024)]).zfill(2) + xor_value
                     infile_pointer += 1
                 file_name += (int(infile.read(4)[::-1].hex(), 16) ^ int(xor_value, 16)).to_bytes(8, byteorder='little', signed=True)[0:4]
-            file_name = file_name.decode().rstrip("\x00")
-            outpath = "extracted/" + os.path.basename(path).rsplit('.', 1)[0] + "/" + file_name
+            file_name = file_name.rstrip(b'\x00')
+            outpath = "extracted/" + os.path.basename(path).rsplit('.', 1)[0] + "/" + file_name.decode('shift-jis')
             os.makedirs(os.path.dirname(outpath), exist_ok=True)
-            with open(outpath, 'wb') as outfile:
-                infile.seek(offset)
-                outfile.write(obfuscation_algo(offset, size, file_name, bytearray(infile.read(size))))
+            if offset != 0 and size >= 32:
+                with open(outpath, 'wb') as outfile:
+                    infile.seek(offset)
+                    outfile.write(obfuscation_algo(offset, size, file_name, bytearray(infile.read(size))))
+            else:
+                print({"number" : i, "name" : file_name.decode('shift-jis'), "offset" : offset, "size" : size})
         infile.close()
         return os.path.abspath(path) + " done."
 
